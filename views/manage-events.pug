@@ -1,12 +1,12 @@
 extends base
 block content
     h1.headerBlue.heading-primary   
-        span.heading-primary--main#headName COMPUTER SOCIETY OF INDIA
+        span.heading-primary--main#headName CSI-Manage-Events
     .main    
       section#section-tours.section-tours
         .u-center-text.u-margin-bottom-big
           h2.heading-secondary
-            | our upcoming events
+            | 
         .row
           -x=1
           each event in events
@@ -22,13 +22,13 @@ block content
                       li= event.team
                       li= event.StartDates
                       li= event.description
-                      li Hover on the card to register!
+                      li Hover on the card to Update!
                 .card__side.card__side--back.div(class="card__side--back-"+x)
                   .card__cta
                     .card__price-box
                       p.card__price-only  only  
                       p.card__price-value= event.price
-                    a.btn.btn--white(href='#popup-update') Register Now!
+                    a.btn.btn--white(href='#popup-update') Update Now!
             -x=x+1
         .u-center-text.u-margin-top-huge   
         #popup-2.popup-2
