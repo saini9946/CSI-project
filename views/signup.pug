@@ -1,0 +1,27 @@
+extends base
+block content
+  body#body1
+    .row#login-row
+      .book
+        .book__form
+          form.form1(action='#')
+            .u-margin-bottom-medium
+                h2.heading-secondary
+                    | Register Now!
+            .form__group
+              input#name.form__input(type='name' placeholder='name' required='')
+              label.form__label(for='name') Name
+            .form__group
+              input#email.form__input(type='email' placeholder='Email' required='')
+              label.form__label(for='Email') Email
+            .form__group
+              input#password.form__input(type='password' placeholder='Password' required='')
+              label.form__label(for='password') Password 
+            .form__group
+              input#password1.form__input(type='password' placeholder='password' required='')
+              label.form__label(for='password') Confirm Your Password   
+            //.form__group.u-margin-bottom-medium
+            .form__group
+              button.btn.btn--green Signup &rarr;
+              
+      

@@ -1,0 +1,23 @@
+extends base
+block content
+  body#body1
+    .row#login-row
+      .book
+        .book__form
+          form.form.form----login(action='#')
+            .u-margin-bottom-medium
+            
+              h2.heading-secondary
+                | Login into your account!
+            .form__group
+              input#email.form__input(type='email' placeholder='Email' required='')
+              label.form__label(for='Email') Email
+            .form__group
+              input#password.form__input(type='password' placeholder='Password' required='')
+              label.form__label(for='password') Password    
+            //.form__group.u-margin-bottom-medium
+            .form__group
+              button.btn.btn--green Login &rarr;
+              h1 OR
+          .form__group
+            a.button.btn.btn--green(href="/signup") Register &rarr;
