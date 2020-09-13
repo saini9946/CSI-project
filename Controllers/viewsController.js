@@ -89,3 +89,9 @@ exports.manageUser = catchAsync(async (req, res) => {
     title: 'Manage-user'
   });
 });
+
+exports.howToJoin = catchAsync(async (req, res) => {
+  res.status(200).render('how-to-join', {
+    title: 'How TO JOIN'
+  });
+});

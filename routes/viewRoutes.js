@@ -18,4 +18,5 @@ router.post('/submit-user-data',authController.protect,viewsController.updateUse
 router.get('/me', authController.protect, viewsController.getMe);
 router.get('/manage-events', authController.isLoggedIn, viewsController.manageEvents);
 router.get('/manage-user', authController.isLoggedIn, viewsController.manageUser);
+router.get('/how-to-join', viewsController.howToJoin);
 module.exports = router;
