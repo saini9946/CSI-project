@@ -32,6 +32,16 @@ const createSendToken = (user, statusCode, res) => {
     }
   });
 };
+exports.verifyEmail = catchAsync(async (req, res, next) => {
+  const { email } = await req.body;
+  const verifyToken = crypto.randomBytes(32).toString('hex');
+  this.emailVerifyToken = crypto
+    .createHash('sha256')
+    .update(verifyToken)
+    .digest('hex');
+  this.verifyTokenExpire = Date.now() + 10 * 60 * 1000;
+  console.log(`verification token ${verifyToken} sent to ${email}!`);
+});
 exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create(req.body);
   createSendToken(newUser, 201, res);

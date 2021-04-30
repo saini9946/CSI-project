@@ -1,0 +1,30 @@
+{
+    "short_name": "CSI-GNDEC",
+    "name": "CSI-GNDEC",
+    "theme_color": "#64b8da~",
+    "background_color": "#8abed1",
+    "display": "standalone",
+    "icons": [
+      {
+        "src": "csi-logo.png",
+        "type": "image/png",
+        "sizes": "48x48"
+      },
+      {
+        "src": "csi-logo.png",
+        "type": "image/png",
+        "sizes": "96x96"
+      },
+      {
+        "src": "csi-logo.png",
+        "type": "image/png",
+        "sizes": "144x144"
+      },
+      {
+        "src": "csi-logo.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      }
+    ],
+    "start_url": "/?utm_source=launcher"
+  }

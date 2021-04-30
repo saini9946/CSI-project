@@ -6,14 +6,14 @@ const bcrypt = require('bcryptjs');
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Please tell us your name'],
+    required: [true, 'Please tell us your name']
   },
   email: {
     type: String,
     required: [true, 'Please enter your email to sign up'],
     unique: true,
     lowercase: true,
-    validate: [validator.isEmail, 'Please provide a valid email'],
+    validate: [validator.isEmail, 'Please provide a valid email']
   },
   photo: {
     type: String,
@@ -24,63 +24,67 @@ const userSchema = new mongoose.Schema({
     enum: ['user', 'admin'],
     default: 'user'
   },
+  verified: {
+    type: Boolean,
+    default: false
+  },
   password: {
     type: String,
     required: [true, 'Please provide a password'],
     minlength: 8,
-    select: false,
+    select: false
   },
   passwordConfirm: {
     type: String,
     required: [true, 'Please confirm your password'],
     //This validation only works on create and save
     validate: {
-      validator: function (el) {
+      validator: function(el) {
         return el === this.password;
       },
-      message: 'Your passwords are not the same',
-    },
+      message: 'Your passwords are not the same'
+    }
   },
   passwordChangedAt: {
-    type: Date,
+    type: Date
   },
   passwordResetToken: String,
   passwordResetExpire: Date,
   active: {
     type: Boolean,
     default: true,
-    select: false,
-  },
+    select: false
+  }
 });
 
 //Encrypting the user password
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function(next) {
   if (!this.isModified('password')) return next();
   this.password = await bcrypt.hash(this.password, 12);
   this.passwordConfirm = undefined;
   next();
 });
 
-userSchema.pre('save', function (next) {
+userSchema.pre('save', function(next) {
   if (!this.isModified('password') || this.isNew) return next();
   this.passwordChangedAt = Date.now() - 1000;
   next();
 });
 
-userSchema.pre(/^find/, function (next) {
+userSchema.pre(/^find/, function(next) {
   this.find({ active: { $ne: false } });
   next();
 });
 
 //Comparing the user-entered password with his/her registered password
-userSchema.methods.correctPassword = async function (
+userSchema.methods.correctPassword = async function(
   candidatePassword,
   userPassword
 ) {
   return await bcrypt.compare(candidatePassword, userPassword);
 };
 
-userSchema.methods.changedPasswordAfter = function (JWTTimeStamp) {
+userSchema.methods.changedPasswordAfter = function(JWTTimeStamp) {
   if (this.passwordChangedAt) {
     const changedTimestamp = parseInt(
       this.passwordChangedAt.getTime() / 1000,
@@ -93,7 +97,7 @@ userSchema.methods.changedPasswordAfter = function (JWTTimeStamp) {
   //False means not changed
   return false;
 };
-userSchema.methods.createPasswordResetToken = function () {
+userSchema.methods.createPasswordResetToken = function() {
   const resetToken = crypto.randomBytes(32).toString('hex');
   this.passwordResetToken = crypto
     .createHash('sha256')

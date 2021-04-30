@@ -6,6 +6,7 @@ html
     meta(charset='UTF-8')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     meta(http-equiv='X-UA-Compatible' content='ie=edge')
+    <link rel="manifest" href="/manifest.json">
     title CSI | Official Website
     link(rel = 'stylesheet' href = '/css/style.css')
     link(rel = 'shortcut icon' type='image/png' href ='./img/csi-logo.png')
@@ -22,6 +23,17 @@ html
     //- script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js")
     //- script(src="/js/login.js")
     script(src="/js/bundle.js")
+    <script>
+      if ('serviceWorker' in navigator) {
+          console.log("Will the service worker register?");
+          navigator.serviceWorker.register('service-worker.js')
+            .then(function(reg){
+              console.log("Yes, it did.");
+          }).catch(function(err) {
+              console.log("No it didn't. This happened:", err)
+          });
+      }
+    </script>
     
 
 

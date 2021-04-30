@@ -1,4 +1,5 @@
 const Event = require('../Models/eventModel');
+const User = require('../Models/userModels');
 const catchAsync = require('../utils/catchAsync');
 
 exports.getOverview = catchAsync(async (req, res, next) => {
@@ -42,13 +43,13 @@ exports.csistaffForm = catchAsync(async (req, res) => {
 exports.MIForm = catchAsync(async (req, res) => {
   res.status(200).render('MI', {
     title: 'MI'
-  }); 
+  });
 });
 
 exports.motivationForm = catchAsync(async (req, res) => {
   res.status(200).render('motivation', {
     title: 'motivation'
-  }); 
+  });
 });
 
 exports.getMe = catchAsync(async (req, res) => {
@@ -76,7 +77,7 @@ exports.updateUserData = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.manageEvents = catchAsync(async (req, res,next) => {
+exports.manageEvents = catchAsync(async (req, res, next) => {
   const events = await Event.find();
   res.status(200).render('manage-events', {
     title: 'Manage-events',
